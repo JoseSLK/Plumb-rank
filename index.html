@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vota por PLUMB — Platanus Hack 26 Bogotá</title>
+<meta name="description" content="PLUMB detecta indicios de corrupción en la obra pública colombiana con datos del SECOP II. Vota por PLUMB en Platanus Hack 26 Bogotá antes del 13 de septiembre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Hallmark · component: promo landing (single-file, no framework) · genre: modern-minimal
+   * theme: custom (anchored to platan.us brand: #ffec40 primary on #09090b paper, Space Grotesk + Sora)
+   * ponytail: static HTML, no build step, no JS framework — vote counts are a manual snapshot, not live data
+   */
+  :root{
+    --bg:#09090b;
+    --bg-alt:#0f0f13;
+    --card:#15151a;
+    --card-hi:#1b1b12;
+    --border:rgba(255,255,255,.08);
+    --fg:#f2f2ef;
+    --muted:#9ca3af;
+    --primary:#ffec40;
+    --secondary:#f9bc12;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Sora',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+    --focus:#ffec40;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;overflow-x:clip}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:48px 48px;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  :focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  main{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(320px,.82fr) minmax(0,1.18fr);align-items:start}
+
+  /* nav — N1a minimal 2-link, this page genuinely has 2 destinations */
+  header.nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(9,9,11,.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1080px;margin:0 auto;
+    gap:16px;flex-wrap:wrap;
+  }
+  .brand{
+    font-family:var(--font-display);font-weight:700;font-size:1.1rem;
+    letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+  }
+  .brand .dot{color:var(--primary)}
+  .nav-links{display:flex;gap:20px;align-items:center;font-size:.9rem;color:var(--muted)}
+  .nav-links a:hover{color:var(--primary)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--primary);color:#0a0a0a;font-family:var(--font-display);
+    font-weight:700;font-size:.95rem;padding:12px 22px;border-radius:8px;
+    border:none;cursor:pointer;transition:transform .15s ease, background .15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--secondary);transform:translateY(-1px)}
+  .btn:active{transform:translateY(0)}
+  .btn-ghost{
+    background:transparent;color:var(--fg);border:1px solid var(--border);
+  }
+  .btn-ghost:hover{border-color:var(--primary);color:var(--primary);background:transparent}
+
+  /* hero */
+  .hero{grid-column:2;grid-row:1;padding:72px 7vw 56px 56px;border-bottom:1px solid var(--border);min-height:540px;display:flex;align-items:center;position:relative;overflow:hidden}
+  .hero::after{content:"PLUMB";position:absolute;right:-.08em;bottom:-.22em;color:rgba(255,236,64,.055);font:700 clamp(6rem,18vw,15rem)/.8 var(--font-display);letter-spacing:-.08em;pointer-events:none}
+  .hero > .wrap{max-width:760px;padding:0}
+  .hero-mark{font:700 .68rem/1.4 var(--font-mono);letter-spacing:.14em;color:var(--muted);margin-bottom:32px;position:relative;z-index:1}
+  .hero-mark span{color:var(--primary)}
+  .eyebrow{
+    font-family:var(--font-mono);font-size:.8rem;letter-spacing:.06em;
+    color:var(--primary);text-transform:uppercase;margin-bottom:18px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow .pulse{
+    width:7px;height:7px;border-radius:50%;background:var(--primary);
+    box-shadow:0 0 0 0 rgba(255,236,64,.6);
+    animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(255,236,64,.5)}
+    70%{box-shadow:0 0 0 8px rgba(255,236,64,0)}
+    100%{box-shadow:0 0 0 0 rgba(255,236,64,0)}
+  }
+  h1{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2.5rem, 6vw, 5rem);line-height:.96;letter-spacing:-.06em;
+    margin:0 0 20px;overflow-wrap:anywhere;min-width:0;
+    max-width:820px;
+  }
+  h1 .hi{color:var(--primary)}
+  .lede{
+    font-size:clamp(1rem,2.2vw,1.15rem);color:var(--muted);
+    max-width:640px;margin:0 0 32px;
+  }
+  .sarcasm{font-family:var(--font-mono);font-size:.82rem;color:var(--secondary);max-width:560px;margin:-12px 0 28px;min-height:1.4em}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+  .hero-ctas .btn{padding:16px 28px;font-size:1.05rem}
+
+  .stat-row{display:flex;gap:28px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--border)}
+  .stat{min-width:140px}
+  .stat b{
+    display:block;font-family:var(--font-mono);font-size:1.8rem;
+    color:var(--primary);line-height:1;margin-bottom:6px;
+  }
+  .stat span{font-size:.85rem;color:var(--muted)}
+
+  section{padding:64px 0}
+  h2{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(1.5rem,3.5vw,2rem);margin:0 0 12px;
+    overflow-wrap:anywhere;min-width:0;
+  }
+  .section-lede{color:var(--muted);max-width:600px;margin:0 0 36px}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+  @media (max-width:820px){.about-grid{grid-template-columns:1fr}}
+  .about-grid p{color:#d7d7d2;margin:0 0 16px}
+  .quote{
+    font-family:var(--font-display);font-size:1.3rem;font-weight:500;
+    border-left:3px solid var(--primary);padding-left:20px;margin:0 0 28px;
+    color:var(--fg);font-style:normal;
+  }
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:24px;
+  }
+  .card h3{font-family:var(--font-display);font-size:1rem;margin:0 0 14px;color:var(--primary)}
+  .card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  .card li{display:flex;gap:10px;font-size:.92rem;color:#d7d7d2}
+  .card li::before{content:"▸";color:var(--primary);flex-shrink:0}
+
+  /* ranking */
+  .rank-table{
+    display:flex;flex-direction:column;gap:6px;
+    border:1px solid var(--border);border-radius:0;overflow:hidden;
+  }
+  #ranking{grid-column:1;grid-row:1 / span 2;padding:32px 24px;position:sticky;top:64px;max-height:calc(100vh - 64px);overflow:auto;border-right:1px solid var(--border)}
+  #ranking .wrap{padding:0;max-width:none}
+  #ranking h2{font-size:1.45rem}
+  #ranking .section-lede{font-size:.78rem;margin-bottom:20px}
+  .rank-head, .rank-row{
+    display:grid;grid-template-columns:44px 1fr 90px 110px;gap:12px;
+    align-items:center;padding:12px 16px;
+  }
+  .rank-head{
+    font-family:var(--font-mono);font-size:.72rem;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--muted);background:var(--bg-alt);
+  }
+  .rank-row{
+    background:rgba(21,21,26,.82);border-top:1px solid var(--border);
+    font-size:.92rem;
+  }
+  .rank-row.is-plumb{
+    background:var(--primary);color:#0a0a0a;
+    border-top:1px solid rgba(255,236,64,.35);
+    border-bottom:1px solid rgba(255,236,64,.35);
+    transform:translateX(8px);
+    box-shadow:-8px 0 0 var(--secondary);
+  }
+  .rank-pos{font-family:var(--font-mono);color:var(--muted)}
+  .rank-row.is-plumb .rank-pos,.rank-row.is-plumb .rank-votes,.rank-row.is-plumb .rank-track{color:#0a0a0a}
+  .rank-name{display:flex;align-items:center;gap:8px;min-width:0}
+  .rank-name .badge{
+    font-size:.68rem;padding:2px 7px;border-radius:5px;
+    background:#0a0a0a;color:var(--primary);font-family:var(--font-mono);
+    font-weight:700;letter-spacing:.03em;flex-shrink:0;
+  }
+  .rank-name span.n{overflow-wrap:anywhere;min-width:0}
+  .rank-track{color:var(--muted);font-size:.85rem}
+  .rank-votes{font-family:var(--font-mono);text-align:right;color:var(--fg);font-weight:500}
+  .rank-row.is-plumb .rank-votes{color:#0a0a0a;font-weight:700}
+  @media (max-width:600px){
+    .rank-head{display:none}
+    .rank-row{grid-template-columns:32px 1fr auto;grid-template-areas:"pos name votes" "pos track votes"}
+    .rank-row .rank-pos{grid-area:pos}
+    .rank-row .rank-name{grid-area:name}
+    .rank-row .rank-track{grid-area:track;font-size:.75rem}
+    .rank-row .rank-votes{grid-area:votes;align-self:center}
+  }
+  .rank-note{margin-top:14px;font-size:.8rem;color:var(--muted)}
+  .updated-status{display:block;margin-top:8px;color:var(--primary);font-family:var(--font-mono);font-size:.72rem}
+
+  /* team */
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+  .member{
+    background:var(--card);border:1px solid var(--border);border-radius:10px;
+    padding:16px;display:flex;flex-direction:column;gap:6px;
+  }
+  .member .name{font-weight:600;font-size:.92rem;overflow-wrap:anywhere}
+  .member .links{display:flex;gap:10px;font-size:.8rem;color:var(--muted)}
+  .member .links a:hover{color:var(--primary)}
+
+  /* final cta */
+  .final-cta{
+    grid-column:2;grid-row:2;text-align:center;padding:72px 56px;border-top:1px solid var(--border);
+    background:var(--primary);color:#0a0a0a;position:relative;overflow:hidden;
+  }
+  .final-cta h2{margin:0 auto 14px;max-width:600px}
+  .final-cta p{color:#35350f;max-width:480px;margin:0 auto 32px}
+  .final-cta .btn{padding:18px 36px;font-size:1.1rem}
+  .final-cta .btn{background:#0a0a0a;color:var(--primary)}
+  .final-cta .btn:hover{background:#262600}
+  .cta-kicker{font:700 .7rem var(--font-mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+
+  footer{
+    border-top:1px solid var(--border);padding:28px 0;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.85rem;
+  }
+  footer a:hover{color:var(--primary)}
+  .credits{font-size:.72rem;text-align:right}
+  .credits summary{cursor:pointer;color:var(--muted);list-style:none}
+  .credits summary::-webkit-details-marker{display:none}
+  .credits span{display:inline-flex;gap:6px;margin-top:6px}
+  @media (max-width:800px){
+    main{display:block}
+    .hero{padding:56px 24px;min-height:0}
+    .hero > .wrap{max-width:1080px}
+    #ranking{position:static;max-height:none;overflow:visible;border-right:0;border-top:1px solid var(--border);padding:48px 24px}
+    .final-cta{padding:56px 24px}
+    .hero-mark{margin-bottom:24px}
+    .rank-row.is-plumb{transform:none}
+    .stat-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .stat{min-width:0}
+    .stat b{font-size:1.25rem}
+    .stat span{font-size:.68rem;line-height:1.25;display:block}
+  }
+</style>
+</head>
+<body>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-mark"><span>EXPEDIENTE 015</span> / DATOS ABIERTOS / BOGOTÁ 2026</div>
+      <div class="eyebrow"><span class="pulse"></span> Platanus Hack 26 · Bogotá · votación abierta hasta el 13 sep</div>
+      <h1>PLUMB va <span class="hi" id="plumb-rank">--</span>. Faltan <span id="vote-gap">--</span> votos para el 1er puesto.</h1>
+      <p class="lede">Un voto, diez segundos, sin cuenta técnica.</p>
+      <p class="sarcasm" id="sarcasm" aria-live="polite">La corrupción no se audita sola. Qué sorpresa.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="https://hack.platan.us/26-co/vote/plumb" target="_blank" rel="noopener">Votar por PLUMB ahora →</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b id="rank-stat">--</b><span>lugar en la clasificación general</span></div>
+        <div class="stat"><b id="plumb-votes">--</b><span>votos hasta ahora</span></div>
+        <div class="stat"><b id="gap-stat">--</b><span>votos para alcanzar el 1er lugar</span></div>
+        <div class="stat"><b id="track-rank">--</b><span>en el track <span id="track-name">--</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ranking">
+    <div class="wrap">
+      <h2>El expediente del voto</h2>
+      <p class="section-lede">Top <span id="project-count">--</span> proyectos. Los números vienen del conteo oficial de <a href="https://hack.platan.us/26-co/vote" target="_blank" rel="noopener" style="color:var(--primary);text-decoration:underline">Platanus</a>.</p>
+      <span class="updated-status" id="updated-status">Actualizando datos...</span>
+
+      <div class="rank-table">
+        <div class="rank-head">
+          <div>#</div><div>Proyecto</div><div>Track</div><div style="text-align:right">Votos</div>
+        </div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Auxio</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row is-plumb"><div class="rank-pos">--</div><div class="rank-name"><span class="badge">PLUMB</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Woki</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Stegora</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">complAI</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Bus Factor HQ</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Vity</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Hippocamp</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Roxy</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">NeuroEcho</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Peaje</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">HIVE</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Aegis</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Moirai</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">deley.com</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Helius</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Replica</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">dipia</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Pa'lante</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Parallax</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">Provenance Firewall</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">PULSE</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">PULSO</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+
+        <div class="rank-row"><div class="rank-pos">--</div><div class="rank-name"><span class="n">TEMIS</span></div><div class="rank-track">--</div><div class="rank-votes">--</div></div>
+      </div>
+      <p class="rank-note" id="rank-note">Consultando el ranking oficial cada 10 segundos.</p>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <div class="cta-kicker">Estado de misión · <span id="cta-rank">--</span></div>
+      <h2>Faltan <span id="final-gap">--</span> votos.</h2>
+      <p id="final-copy">Consultando el ranking oficial...</p>
+      <a class="btn" href="https://hack.platan.us/26-co/vote/plumb" target="_blank" rel="noopener">Votar por PLUMB →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>PLUMB · Platanus Hack 26 Bogotá</span>
+  <details class="credits">
+    <summary>créditos</summary>
+    <span>
+      <a href="https://github.com/camiloAndres11" target="_blank" rel="noopener">Camilo</a>
+      ·
+      <a href="https://github.com/JoseSLK" target="_blank" rel="noopener">Jose</a>
+    </span>
+  </details>
+</footer>
+
+<script>
+  const sarcasms = [
+    "La corrupción no se audita sola. Qué sorpresa.",
+    "Un clic pesa menos que un contrato amañado.",
+    "El ranking no se va a corregir por telepatía.",
+    "Un voto: menos que una reunión que pudo ser un correo.",
+    "La obra pública merece mejores plot twists.",
+    "Una pola por cada voto. Si ganamos, revisamos el presupuesto después."
+  ];
+  const sarcasm = document.querySelector("#sarcasm");
+  let phrase = 0;
+  setInterval(() => {
+    phrase = (phrase + 1) % sarcasms.length;
+    sarcasm.textContent = sarcasms[phrase];
+  }, 4200);
+
+  const rankingRows = [...document.querySelectorAll(".rank-row")];
+  const rowsByName = new Map(rankingRows.map(row => [
+    row.querySelector(".badge, .n").textContent.trim().toLowerCase(), row
+  ]));
+  rankingRows.forEach(row => {
+    row.querySelector(".rank-pos").textContent = "--";
+    row.querySelector(".rank-track").textContent = "--";
+    row.querySelector(".rank-votes").textContent = "--";
+  });
+  const rankTable = document.querySelector(".rank-table");
+  let refreshing = false;
+  let lastUpdated = null;
+  let staleData = false;
+
+  const ordinal = rank => rank === 1 ? "1ro" : rank === 2 ? "2do" : `${rank}ro`;
+
+  async function refreshRanking() {
+    if (refreshing) return;
+    refreshing = true;
+    try {
+      const response = await fetch("/api/ranking", { cache: "no-store" });
+      if (!response.ok) throw new Error("ranking unavailable");
+      const { projects, updated, stale } = await response.json();
+      const visibleProjects = projects.filter(project => rowsByName.has(project.name.toLowerCase()));
+      visibleProjects.forEach(project => {
+        const row = rowsByName.get(project.name.toLowerCase());
+        row.querySelector(".rank-track").textContent = project.track;
+        row.querySelector(".rank-votes").textContent = project.votes;
+      });
+      const orderedRows = document.createDocumentFragment();
+      visibleProjects.forEach((project, index) => {
+        const row = rowsByName.get(project.name.toLowerCase());
+        row.querySelector(".rank-pos").textContent = index + 1;
+        orderedRows.appendChild(row);
+      });
+      rankTable.appendChild(orderedRows);
+      const plumbIndex = visibleProjects.findIndex(project => project.name === "PLUMB");
+      const plumb = visibleProjects[plumbIndex];
+      const leader = visibleProjects[0];
+      const gap = Math.max(0, leader.votes - plumb.votes + 1);
+      const trackProjects = visibleProjects.filter(project => project.track === plumb.track);
+      const trackRank = trackProjects.findIndex(project => project.name === "PLUMB") + 1;
+      document.querySelector("#plumb-rank").textContent = ordinal(plumbIndex + 1);
+      document.querySelector("#rank-stat").textContent = `#${plumbIndex + 1}`;
+      document.querySelector("#plumb-votes").textContent = plumb.votes;
+      document.querySelector("#vote-gap").textContent = gap;
+      document.querySelector("#gap-stat").textContent = gap;
+      document.querySelector("#track-rank").textContent = `#${trackRank}`;
+      document.querySelector("#track-name").textContent = plumb.track;
+      document.querySelector("#rank-note").textContent = `PLUMB está ${ordinal(plumbIndex + 1)}. Faltan ${gap} votos para alcanzar el primer lugar. Actualización automática cada 10 segundos.`;
+      document.querySelector("#project-count").textContent = visibleProjects.length;
+      document.querySelector("#cta-rank").textContent = `#${plumbIndex + 1}`;
+      document.querySelector("#final-gap").textContent = gap;
+      document.querySelector("#final-copy").textContent = gap === 0
+        ? "PLUMB ya está arriba. Un voto más no le hace daño al ego."
+        : `PLUMB está ${ordinal(plumbIndex + 1)}. La gloria queda a ${gap} votos.`;
+      document.title = `PLUMB #${plumbIndex + 1} · ${plumb.votes} votos · ${gap} para ganar`;
+      lastUpdated = updated ? updated * 1000 : Date.now();
+      staleData = stale;
+    } catch (error) {
+      console.warn("No se pudo actualizar el ranking", error);
+      document.querySelector("#updated-status").textContent = "No se pudo actualizar; mostrando último dato válido";
+    } finally {
+      refreshing = false;
+    }
+  }
+
+  refreshRanking();
+  setInterval(refreshRanking, 10000);
+  setInterval(() => {
+    const status = document.querySelector("#updated-status");
+    if (lastUpdated === null) return;
+    const seconds = Math.floor((Date.now() - lastUpdated) / 1000);
+    const age = seconds === 0 ? "ahora" : `hace ${seconds} s`;
+    status.textContent = staleData
+      ? `Último dato oficial ${age} · Platanus sin cambios nuevos`
+      : `Datos oficiales actualizados ${age}`;
+  }, 1000);
+</script>
+
+</body>
+</html>
